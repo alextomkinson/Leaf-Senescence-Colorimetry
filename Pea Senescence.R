@@ -6,13 +6,6 @@ library(showtext)
 library(extrafont)
 
 
-# **** can write a for loop to do this for all weeks in one code but that'd be a LOT
-# for (i in 1:8) {
-  # setwd(paste('C:/Users/alext7/OneDrive - University of Tasmania/Pea Senescence/Post/Week', i))
-  # and so on for the IDs
-
-# }
-
 setwd(%%%%%%%%%%%) # INSERT WD FILEPATH HERE
 dir.create(file.path(paste(getwd(),'/Results',sep='')))
 dir.create(file.path(paste(getwd(),'/Results/Control Images',sep='')))
@@ -40,7 +33,7 @@ results <- data.frame(Line = character(count),
                       PercentPurple = numeric(count),
                       Filename = character(count),
                       stringsAsFactors = FALSE)
-IDs <- read.delim('C:/Users/alext7/OneDrive - University of Tasmania/Pea Senescence/Post/Week 8/Leaf Info 8.txt',
+IDs <- read.delim(### .txt FILE CONTAINING METADATA OF PLANTS/POTS,
                   header =TRUE, sep = "\t", dec=".", stringsAsFactors = FALSE)
 
 for (i in 1:length(files)) {
@@ -206,6 +199,7 @@ endplot <- ggplot(data, aes(fill = Color, y = Value, x = Genotype)) +
 
 
   endplot + theme(text = element_text(size = 12, family = "Calibri"))
+
 
 
 
