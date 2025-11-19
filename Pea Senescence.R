@@ -64,7 +64,10 @@ for (i in 1:length(files)) {
   ##########################
   ### Color recognition ###
   ##########################
-  
+
+  # imagerHSV[,,1,1] = hue range expressed 0-360
+  # imagerHSV[,,1,2] = saturation percentage expressed 0-1
+  # imagerHSV[,,1,3] = value (or brightness) percentage expressed 0-1
   tempBG <- which(imagerHSV[,,1,2] <= 0.1|imagerHSV[,,1,3] <= 0.05)
   tempGY <- which((is.element(round(imagerHSV[,,1,1]), 66:75) &
                      imagerHSV[,,1,3] > 0.15) &
@@ -195,6 +198,7 @@ endplot <- ggplot(data, aes(fill = Color, y = Value, x = Genotype)) +
 
 
   endplot + theme(text = element_text(size = 12, family = "Calibri"))
+
 
 
 
