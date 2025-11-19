@@ -6,7 +6,7 @@ library(showtext)
 library(extrafont)
 
 
-setwd(%%%%%%%%%%%) # INSERT WD FILEPATH HERE
+setwd(_____________) # INSERT WD FILEPATH HERE
 dir.create(file.path(paste(getwd(),'/Results',sep='')))
 dir.create(file.path(paste(getwd(),'/Results/Control Images',sep='')))
 
@@ -57,13 +57,14 @@ for (i in 1:length(files)) {
   
   results$Filename[i] <- as.character(files[i])
   results$Plant[i] <- substr(files[i], nchar(results$Line[i]) + 2, regexpr("_W", files[i])[1]-1)
-  results$Node[i] <- as.numeric(4) # HARD CODED
-  results$WAS[i] <- IDs$WAS[1] # HARD CODED
+  results$Node[i] <- as.numeric(4) # HARD CODED, change as needed
+  results$WAS[i] <- IDs$WAS[1] # HARD CODED, change as needed
   
   
   ##########################
   ### Color recognition ###
   ##########################
+  
   tempBG <- which(imagerHSV[,,1,2] <= 0.1|imagerHSV[,,1,3] <= 0.05)
   tempGY <- which((is.element(round(imagerHSV[,,1,1]), 66:75) &
                      imagerHSV[,,1,3] > 0.15) &
@@ -147,7 +148,7 @@ write.table(results, file = paste(getwd(), "/Results/rawresults.txt",sep=""),
             quote = FALSE, row.names = FALSE)
 
 
-### trying to make a summary table and plot the percentages of colors by line and week
+### Making a summary table and plot the percentages of colors by line and week
 
 line_names <- as.character(unique(results$Line))
 meta_count <- as.numeric(length(line_names))
@@ -169,10 +170,8 @@ color_mean <- function(line, column) {
 
 for (k in 1:meta_count) {
   senescence$Line[k] <- line_names[k]
-  # p_greenyellow = mean(results[which(results$Line == line_names[k]),]$PercentGreenYellow)
-  # p_greenyellow = color_mean(line_names[k], 9)
   senescence$WAS[k] <- results$WAS[k]
-  senescence$Node[k] <- 4 # HARD CODED
+  senescence$Node[k] <- 4 # HARD CODED, change as needed
   senescence$MeanGreenYellow[k] <- color_mean(line_names[k], 9)
   senescence$MeanGreen[k] <- color_mean(line_names[k], 11)
   senescence$MeanYellow[k] <- color_mean(line_names[k], 13)
@@ -195,10 +194,8 @@ endplot <- ggplot(data, aes(fill = Color, y = Value, x = Genotype)) +
   theme_grey()
 
 
-  theme(text = element_text(size = 12, family = "Calibri"))
-
-
   endplot + theme(text = element_text(size = 12, family = "Calibri"))
+
 
 
 
