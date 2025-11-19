@@ -6,7 +6,7 @@ library(showtext)
 library(extrafont)
 
 
-setwd(_____________) # INSERT WD FILEPATH HERE
+setwd(#  INSERT WD FILEPATH HERE  #)
 dir.create(file.path(paste(getwd(),'/Results',sep='')))
 dir.create(file.path(paste(getwd(),'/Results/Control Images',sep='')))
 
@@ -195,6 +195,7 @@ endplot <- ggplot(data, aes(fill = Color, y = Value, x = Genotype)) +
 
 
   endplot + theme(text = element_text(size = 12, family = "Calibri"))
+
 
 
 
